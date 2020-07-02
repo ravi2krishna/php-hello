@@ -19,6 +19,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'REGISTRY_PWD', usernameVariable: 'REGISTRY_USER')]) {
+                    sh 'docker login -u=$REGISTRY_USER -p=$REGISTRY_PWD'    
                     sh 'docker push ravi2krishna/php-hello:${VERSION}'    
                 }
             }
