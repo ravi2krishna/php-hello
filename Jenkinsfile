@@ -3,16 +3,12 @@
 pipeline {
     agent any
     
-    environment {
-        SERVERS = sh(script: "sh instances.sh", returnStdout: true).trim()
-    }
-    
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                echo '${env.SERVERS}'
-                //sh 'sh instances.sh'
+                sh 'sh instances.sh > servers_list'
+                sh 'cat servers_list'
             }
         }
         stage ('Deploy') {
