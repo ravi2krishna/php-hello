@@ -7,7 +7,7 @@ pipeline {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-                sh 'instances.sh'
+                sh 'sh instances.sh'
             }
         }
         stage ('Deploy') {
